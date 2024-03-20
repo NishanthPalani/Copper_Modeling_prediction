@@ -53,11 +53,11 @@ Classification:
 
 - Algorithm Assessment: In the realm of classification, our primary objective is to predict the categorical variable of status. The dataset is thoughtfully divided into training and testing subsets, setting the stage for our classification endeavor. We apply various algorithms to assess their performance and select the most suitable base algorithm for our specific data.
 
-- Algorithm Selection: After thorough evaluation, could see Random Forest Regressor had better testing accuracy as well eliminating the  overfitting issues in both training and testing. Hence I choose the Random Forest for its ability to strike a balance between interpretability and accuracy, ensuring robust performance on unseen data.
+- Algorithm Selection: After thorough evaluation, could see KNN classification had better testing accuracy as well as less overfitting issues in both training and testing. Hence I choose the KNN classifier for its ability to strike a balance between interpretability and accuracy, ensuring robust performance on unseen data.
 
 - Hyperparameter Tuning with GridSearchCV and Cross-Validation: To fine-tune our model and mitigate overfitting, we employ GridSearchCV with cross-validation for hyperparameter tuning. This function allows us to systematically explore multiple parameter values and return the optimal set of parameters. {'max_depth': 20, 'max_features': 'None', 'min_samples_leaf': 2, 'min_samples_split': 20}
 
-- Model Accuracy and Metrics: With the optimized parameters, our Random Forest Regressor achieves an impressive 89.0% accuracy, ensuring robust predictions for unseen data.
+- Model Accuracy and Metrics: With the optimized parameters, our KNN classifier achieves an impressive 89.0% accuracy, ensuring robust predictions for unseen data. To further evaluate our model, we leverage key metrics such as the confusion matrix, precision, recall, F1-score, AUC, and ROC curve, providing a comprehensive view of its performance.
 
 - Model Persistence: We conclude this phase by saving our well-trained model to a pickle file. This enables us to effortlessly load the model and make predictions on the status whenever needed, streamlining future applications.
 
@@ -69,6 +69,6 @@ Regression:
 
 - Hyperparameter Tuning with GridSearchCV and Cross-Validation: To fine-tune our model and mitigate overfitting, we employ GridSearchCV with cross-validation for hyperparameter tuning. This function allows us to systematically explore multiple parameter values and return the optimal set of parameters. {'max_depth': 20, 'max_features': None, 'min_samples_leaf': 1, 'min_samples_split': 2}.
 
-- Model Accuracy and Metrics: With the optimized parameters, our Random Forest Regressor achieves an impressive 95.7% accuracy. This level of accuracy ensures robust predictions for unseen data. We further evaluate our model using essential metrics such as mean absolute error, mean squared error, root mean squared error, and the coefficient of determination (R-squared). These metrics provide a comprehensive assessment of our model's performance.
+- Model Accuracy and Metrics: With the optimized parameters, our Random Forest Regressor achieves an impressive 89.0% accuracy. This level of accuracy ensures robust predictions for unseen data. We further evaluate our model using essential metrics such as mean absolute error, mean squared error, root mean squared error, and the coefficient of determination (R-squared). These metrics provide a comprehensive assessment of our model's performance.
 
 - Model Persistence: We conclude this phase by saving our well-trained model to a pickle file. This strategic move enables us to effortlessly load the model whenever needed, streamlining the process of making predictions on selling prices in future applications.
