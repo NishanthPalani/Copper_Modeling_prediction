@@ -29,35 +29,35 @@ Data Preprocessing:
 
 - Handling Null Values: The dataset may contain missing values that need to be addressed. The choice of handling these null values, whether through mean, median, or mode imputation, depends on the nature of the data and the specific feature.
 
-- Encoding and Data Type Conversion: To prepare categorical features for modeling, we employ ordinal encoding. This technique transforms categorical values into numerical representations based on their intrinsic nature and their relationship with the target variable. Additionally, it's essential to convert data types to ensure they match the requirements of our modeling process.
+- Encoding and Data Type Conversion: To prepare categorical features for modeling, we employ label encoding. This technique transforms categorical values into numerical representations based on their intrinsic nature and their relationship with the target variable. Additionally, it's essential to convert data types to ensure they match the requirements of our modeling process.
 
 - Skewness - Feature Scaling: Skewness is a common challenge in datasets. Identifying skewness in the data is essential, and appropriate data transformations must be applied to mitigate it. One widely-used method is the log transformation, which is particularly effective in addressing high skewness in continuous variables. This transformation helps achieve a more balanced and normally-distributed dataset, which is often a prerequisite for many machine learning algorithms.
 
-- Outliers Handling: Outliers can significantly impact model performance. We tackle outliers in our data by using the Interquartile Range (IQR) method. This method involves identifying data points that fall outside the IQR boundaries and then converting them to values that are more in line with the rest of the data. This step aids in producing a more robust and accurate model.
+- Outliers Handling: Outliers can significantly impact model performance. We tackle outliers in our data by using the log Transformation. This method will eliminate the outiers without loosing data points which aids in producing a more robust and accurate model.
 
-- Wrong Date Handling: In cases where some delivery dates are precedes the item dates, we resolve this issue by calculating the difference and it's used to train a Random Forest Regressor model, which enables us to predict the corrected delivery date. This approach ensures that our dataset maintains data integrity and accuracy.
+- Wrong Date Handling: With the data provided some values for Quantity-Tons, Selling price, thichness were in negative which cannot be the case as well as the delivery date is less than the item date which may be wrong data. So we have marked those and dropped for better accuracy of the model
 
 Exploratory Data Analysis (EDA) and Feature Engineering:
 
-- Skewness Visualization: To enhance data distribution uniformity, we visualize and correct skewness in continuous variables using Seaborn's Histplot and Violinplot. By applying the Log Transformation method, we achieve improved balance and normal distribution, while ensuring data integrity.
+- Skewness Visualization: To enhance data distribution uniformity, we visualize and correct skewness in continuous variables using Seaborn's Distpolt and Violinplot. By applying the Log Transformation method, we achieve improved balance and normal distribution, while ensuring data integrity.
 
-- Outlier Visualization: We identify and rectify outliers by leveraging Seaborn's Boxplot. This straightforward visualization aids in pinpointing outlier-rich features. Our chosen remedy is the Interquartile Range (IQR) method, which brings outlier data points into alignment with the rest of the dataset, bolstering its resilience.
+- Outlier Visualization: We identify and rectify outliers by leveraging Seaborn's Boxplot. This straightforward visualization aids in pinpointing outlier-rich features. Our chosen remedy was log Transformation, which brings outlier data points into alignment with the rest of the dataset, maintaining its resilience.
 
-- Feature Improvement: Our focus is on improving our dataset for more effective modeling. We achieve this by creating new features to gain deeper insights from the data while making the dataset more efficient. Notably, our evaluation, facilitated by Seaborn's Heatmap, confirms that no columns exhibit strong correlation, with the highest correlation value at just 0.42 (absolute value), underlining our commitment to data quality and affirming that there's no need to drop any columns.
+- Feature Improvement: Our focus is on improving our dataset for more effective modeling. We achieve this by creating new features to gain deeper insights from the data while making the dataset more efficient. Notably, our evaluation, facilitated by Seaborn's Heatmap, confirms that no columns exhibit strong correlation, with the highest correlation value at just 0.39 (absolute value), underlining our commitment to data quality and affirming that there's no need to drop any columns.
 
 Classification:
 
 - Success and Failure Classification: In our predictive journey, we utilize the 'status' variable, defining 'Won' as Success and 'Lost' as Failure. Data points with status values other than 'Won' and 'Lost' are excluded from our dataset to focus on the core classification task.
 
-- Handling Data Imbalance: In our predictive analysis, we encountered data imbalance within the 'status' feature. To address this issue, we implemented the SMOTETomek oversampling method, ensuring our dataset is well-balanced. This enhancement significantly enhances the performance and reliability of our classification tasks, yielding more accurate results in distinguishing between success and failure.
+- Handling Data Imbalance: In our predictive analysis, we encountered data imbalance within the 'status' feature. To address this issue, we implemented the SMOTE oversampling method, ensuring our dataset is well-balanced. This enhancement significantly enhances the performance and reliability of our classification tasks, yielding more accurate results in distinguishing between success and failure.
 
 - Algorithm Assessment: In the realm of classification, our primary objective is to predict the categorical variable of status. The dataset is thoughtfully divided into training and testing subsets, setting the stage for our classification endeavor. We apply various algorithms to assess their performance and select the most suitable base algorithm for our specific data.
 
-- Algorithm Selection: After thorough evaluation, two contenders, the Extra Trees Classifier and Random Forest Classifier, demonstrate commendable testing accuracy. Upon checking for any overfitting issues in both training and testing, both models exhibit strong performance without overfitting concerns. I choose the Random Forest Classifier for its ability to strike a balance between interpretability and accuracy, ensuring robust performance on unseen data.
+- Algorithm Selection: After thorough evaluation, could see Random Forest Regressor had better testing accuracy as well eliminating the  overfitting issues in both training and testing. Hence I choose the Random Forest for its ability to strike a balance between interpretability and accuracy, ensuring robust performance on unseen data.
 
-- Hyperparameter Tuning with GridSearchCV and Cross-Validation: To fine-tune our model and mitigate overfitting, we employ GridSearchCV with cross-validation for hyperparameter tuning. This function allows us to systematically explore multiple parameter values and return the optimal set of parameters. {'max_depth': 20, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 2}
+- Hyperparameter Tuning with GridSearchCV and Cross-Validation: To fine-tune our model and mitigate overfitting, we employ GridSearchCV with cross-validation for hyperparameter tuning. This function allows us to systematically explore multiple parameter values and return the optimal set of parameters. {'max_depth': 20, 'max_features': 'None', 'min_samples_leaf': 2, 'min_samples_split': 20}
 
-- Model Accuracy and Metrics: With the optimized parameters, our Random Forest Classifier achieves an impressive 96.5% accuracy, ensuring robust predictions for unseen data. To further evaluate our model, we leverage key metrics such as the confusion matrix, precision, recall, F1-score, AUC, and ROC curve, providing a comprehensive view of its performance.
+- Model Accuracy and Metrics: With the optimized parameters, our Random Forest Regressor achieves an impressive 89.0% accuracy, ensuring robust predictions for unseen data.
 
 - Model Persistence: We conclude this phase by saving our well-trained model to a pickle file. This enables us to effortlessly load the model and make predictions on the status whenever needed, streamlining future applications.
 
